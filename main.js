@@ -14,6 +14,8 @@ const specialDefense = document.getElementById("special-defense");
 const speed = document.getElementById("speed");
 const randomBtn = document.getElementById("random-button");
 
+const card = document.querySelector(".inside-bg");
+
 const searchPokedex = async () => {
   try {
     const res = await fetch(
@@ -21,6 +23,12 @@ const searchPokedex = async () => {
     );
     const data = await res.json();
     const { name, weight, height, id, stats, sprites, types } = data;
+
+    const mainType = types[0].type.name;
+    const color = typeColors[mainType] || "#ffffff";
+
+    card.style.background = `linear-gradient(135deg, ${color}, #ffffff)`;
+
     pokemonName.innerHTML = name;
     pokemonId.innerHTML = `ID:${id}`;
     pokemonWeight.innerHTML = `Weight:${weight}`;
@@ -79,12 +87,10 @@ let pokemonList = [];
 const suggestionsBox = document.getElementById("suggestions");
 
 const loadPokemonNames = async () => {
-  const res = await fetch(
-    "https://pokeapi.co/api/v2/pokemon?limit=1000"
-  );
+  const res = await fetch("https://pokeapi.co/api/v2/pokemon?limit=1000");
   const data = await res.json();
 
-  pokemonList = data.results.map(p => p.name);
+  pokemonList = data.results.map((p) => p.name);
 };
 
 loadPokemonNames();
@@ -96,10 +102,10 @@ userInput.addEventListener("input", () => {
   if (!value) return;
 
   const matches = pokemonList
-    .filter(name => name.startsWith(value))
+    .filter((name) => name.startsWith(value))
     .slice(0, 6);
 
-  matches.forEach(name => {
+  matches.forEach((name) => {
     const li = document.createElement("li");
     li.className = "list-group-item list-group-item-action";
     li.textContent = name;
@@ -119,14 +125,33 @@ document.addEventListener("click", (e) => {
   }
 });
 const randomPokemon = () => {
-  // PokéAPI currently supports ~1025 pokemon
   const randomId = Math.floor(Math.random() * 1025) + 1;
 
   userInput.value = randomId;
 
-  // clear suggestions
   suggestionsBox.innerHTML = "";
 
   searchPokedex();
 };
 randomBtn.addEventListener("click", randomPokemon);
+
+const typeColors = {
+  fire: "#ff6b6b",
+  water: "#4dabf7",
+  grass: "#51cf66",
+  electric: "#ffd43b",
+  psychic: "#f783ac",
+  ice: "#74c0fc",
+  dragon: "#845ef7",
+  dark: "#343a40",
+  fairy: "#faa2c1",
+  normal: "#adb5bd",
+  fighting: "#ff922b",
+  flying: "#a5d8ff",
+  poison: "#da77f2",
+  ground: "#e9c46a",
+  rock: "#c9ada7",
+  bug: "#94d82d",
+  ghost: "#9775fa",
+  steel: "#ced4da",
+};

@@ -1,4 +1,4 @@
-/* ---------- PAGE BACKGROUND ---------- */
+
 body {
   margin: 0;
   min-height: 100vh;
@@ -6,10 +6,9 @@ body {
   background: url("./assets/Back.webp") center / cover no-repeat;
   font-family: "Segoe UI", sans-serif;
 
-  overflow: hidden; /* ✅ removes scrollbar */
+  overflow: hidden;
 }
 
-/* ---------- CENTER WRAPPER ---------- */
 .wrapper {
   display: flex;
   justify-content: center;
@@ -17,9 +16,8 @@ body {
 
 }
 
-/* ---------- MAIN POKEDEX CARD ---------- */
 .inside-bg {
-  width: 520px;              /* ↓ smaller card *           /* ↓ less inner space */
+  width: 520px;                
   border-radius: 18px;
 
   background: rgba(255, 255, 255, 0.9);
@@ -31,25 +29,21 @@ body {
   transition: transform 0.3s ease;
 }
 
-/* ---------- TITLE ---------- */
 #pokemonName {
   font-weight: 700;
   letter-spacing: 1px;
 }
 
 
-/* ---------- STATS SECTION ---------- */
 .stats-container {
   text-align: left;
 }
 
 
-/* stat labels */
 .stats-container .col-6:first-child {
   font-weight: 500;
 }
 
-/* stat values */
 .stats-container .text-end {
   font-weight: 600;
   color: #dc3545;

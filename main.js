@@ -12,6 +12,7 @@ const defense = document.getElementById("defense");
 const specialAttack = document.getElementById("special-attack");
 const specialDefense = document.getElementById("special-defense");
 const speed = document.getElementById("speed");
+const randomBtn = document.getElementById("random-button");
 
 const searchPokedex = async () => {
   try {
@@ -61,14 +62,14 @@ toggleBtn.addEventListener("click", () => {
     music.play();
 
     toggleBtn.innerHTML =
-      '<img width="25px" src="./assets/musicicon.png"> Music OFF';
+      '<img width="25px" src="./assets/musicicon.png"> Music ON';
 
     isPlaying = true;
   } else {
     music.pause();
 
     toggleBtn.innerHTML =
-      '<img width="25px" src="./assets/musicicon.png"> Music ON';
+      '<img width="25px" src="./assets/musicicon.png"> Music OF';
 
     isPlaying = false;
   }
@@ -117,3 +118,15 @@ document.addEventListener("click", (e) => {
     suggestionsBox.innerHTML = "";
   }
 });
+const randomPokemon = () => {
+  // PokéAPI currently supports ~1025 pokemon
+  const randomId = Math.floor(Math.random() * 1025) + 1;
+
+  userInput.value = randomId;
+
+  // clear suggestions
+  suggestionsBox.innerHTML = "";
+
+  searchPokedex();
+};
+randomBtn.addEventListener("click", randomPokemon);

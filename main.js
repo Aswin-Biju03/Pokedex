@@ -82,7 +82,9 @@ toggleBtn.addEventListener("click", () => {
     isPlaying = false;
   }
 });
-
+document.addEventListener("click", () => {
+  music.play()
+});
 let pokemonList = [];
 const suggestionsBox = document.getElementById("suggestions");
 

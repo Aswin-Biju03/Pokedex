@@ -16,6 +16,27 @@ const randomBtn = document.getElementById("random-button");
 
 const card = document.querySelector(".inside-bg");
 
+const typeColors = {
+  fire: "#ff6b6b",
+  water: "#4dabf7",
+  grass: "#51cf66",
+  electric: "#ffd43b",
+  psychic: "#f783ac",
+  ice: "#74c0fc",
+  dragon: "#845ef7",
+  dark: "#343a40",
+  fairy: "#faa2c1",
+  normal: "#adb5bd",
+  fighting: "#ff922b",
+  flying: "#a5d8ff",
+  poison: "#da77f2",
+  ground: "#e9c46a",
+  rock: "#c9ada7",
+  bug: "#94d82d",
+  ghost: "#9775fa",
+  steel: "#ced4da",
+};
+
 const searchPokedex = async () => {
   try {
     const res = await fetch(
@@ -64,27 +85,31 @@ const toggleBtn = document.getElementById("musicToggle");
 
 let isPlaying = false;
 
-/* ---------- TOGGLE BUTTON ---------- */
 toggleBtn.addEventListener("click", () => {
   if (!isPlaying) {
     music.play();
 
     toggleBtn.innerHTML =
-      '<img width="25px" src="./assets/musicicon.png"> Music ON';
+      '<img width="25px" src="./assets/musicicon.png"> Music OFF';
 
     isPlaying = true;
   } else {
     music.pause();
 
     toggleBtn.innerHTML =
-      '<img width="25px" src="./assets/musicicon.png"> Music OF';
+      '<img width="25px" src="./assets/musicicon.png"> Music ON';
 
     isPlaying = false;
   }
 });
-document.addEventListener("click", () => {
-  music.play()
-});
+document.addEventListener(
+  "click",
+  () => {
+    music.play().catch(() => {});
+  },
+  { once: true }
+);
+
 let pokemonList = [];
 const suggestionsBox = document.getElementById("suggestions");
 
@@ -136,24 +161,3 @@ const randomPokemon = () => {
   searchPokedex();
 };
 randomBtn.addEventListener("click", randomPokemon);
-
-const typeColors = {
-  fire: "#ff6b6b",
-  water: "#4dabf7",
-  grass: "#51cf66",
-  electric: "#ffd43b",
-  psychic: "#f783ac",
-  ice: "#74c0fc",
-  dragon: "#845ef7",
-  dark: "#343a40",
-  fairy: "#faa2c1",
-  normal: "#adb5bd",
-  fighting: "#ff922b",
-  flying: "#a5d8ff",
-  poison: "#da77f2",
-  ground: "#e9c46a",
-  rock: "#c9ada7",
-  bug: "#94d82d",
-  ghost: "#9775fa",
-  steel: "#ced4da",
-};

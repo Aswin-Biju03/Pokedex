@@ -105,10 +105,17 @@ toggleBtn.addEventListener("click", () => {
 document.addEventListener(
   "click",
   () => {
-    music.play().catch(() => {});
+    if (!isPlaying) {
+      music.play().then(() => {
+        isPlaying = true;
+        toggleBtn.innerHTML =
+          '<img width="25px" src="./assets/musicicon.png"> Music ON';
+      }).catch(() => {});
+    }
   },
   { once: true }
 );
+
 
 let pokemonList = [];
 const suggestionsBox = document.getElementById("suggestions");

@@ -90,14 +90,14 @@ toggleBtn.addEventListener("click", () => {
     music.play();
 
     toggleBtn.innerHTML =
-      '<img width="25px" src="./assets/musicicon.png"> Music OFF';
+      '<img width="25px" src="./assets/musicicon.png"> Music ON';
 
     isPlaying = true;
   } else {
     music.pause();
 
     toggleBtn.innerHTML =
-      '<img width="25px" src="./assets/musicicon.png"> Music ON';
+      '<img width="25px" src="./assets/musicicon.png"> Music OFF';
 
     isPlaying = false;
   }
